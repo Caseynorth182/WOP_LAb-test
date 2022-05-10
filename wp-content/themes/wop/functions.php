@@ -347,7 +347,6 @@ function car_metabox_callback($post)
 	<p>
 	Fuel:
 		<select name="fuel_select">
-			<option value="">Select fuel type</option>
 			<option value="diesel" ' . selected('diesel', $fuel, false) . '>diesel</option>
 			<option value="hybrid" ' . selected('hybrid', $fuel, false) . '>hybrid</option>
 			<option value="electro" ' . selected('electro', $fuel, false) . '>electro</option>
