@@ -23,6 +23,25 @@ get_header();
 
 	endwhile; // End of the loop.
 	?>
+
+
+    <?php
+	$post_brand_term = get_the_terms(get_the_ID(), 'brand');
+	$post_brand_country = get_the_terms(get_the_ID(), 'country');
+	if ($post_brand_term && $post_brand_country) :
+	?>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 offset-md-2">
+                <p>Brand: <?php echo $post_brand_term[0]->name ?></p>
+                <p>Country: <?php echo $post_brand_country[0]->name ?></p>
+            </div>
+        </div>
+    </div clas>
+    <?php endif; ?>
+
+
     <?php
 	$meta_values = get_post_meta(get_the_ID(), '', false);
 	if ($meta_values) :
