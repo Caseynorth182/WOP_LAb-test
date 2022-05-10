@@ -23,43 +23,37 @@ get_header();
 
 	endwhile; // End of the loop.
 	?>
-
-
+    <?php
+	$meta_values = get_post_meta(get_the_ID(), '', false);
+	if ($meta_values) :
+	?>
+    <hr>
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <ul class="single_meta-box_block box_block">
-                <?php
-				$meta_values = get_post_meta(get_the_ID(), '', false);
-				foreach ($meta_values as $key => $val) :
-					if ($key[0] !== '_') :
-						if ($val[0][0] == '#') :
-				?>
                 <li class="box_block__item box_block--color">
-                    <?php echo $key; ?> :
-                    <span style="display: inline-block; width: 25px; height: 25px; background: <?php echo $val[0] ?>"
+                    Car color:
+                    <span
+                        style="display: inline-block; width: 25px; height: 25px; background: <?php echo $meta_values['car_color'][0] ?>"
                         class="color_block_view">
                     </span>
                 </li>
-                <?php
-						else :
-						?>
                 <li class="box_block__item box_block--fuel">
-                    <?php echo $key ?>: <?php echo $val[0] ?>
+                    fuel: <?php echo $meta_values['fuel'][0] ?>
                 </li>
-
-                <?php
-						endif;
-					endif;
-				endforeach;
-
-
-				?>
+                <li class="box_block__item box_block--power">
+                    Power: <?php echo $meta_values['power_int'][0] ?>
+                </li>
+                <li class="box_block__item box_block--price">
+                    Price: <?php echo $meta_values['price'][0]  ?> $
                 </li>
             </ul>
         </div>
     </div>
     <hr>
-
+    <?php
+	endif;
+	?>
 
 </main><!-- #main -->
 
