@@ -411,3 +411,48 @@ function wop_save_meta($post_id, $post)
 
 	return $post_id;
 }
+
+
+/* ------------------------- //LINK CUSTOM SHORTCODE ------------------------ */
+
+add_shortcode('wop_shortcode', 'show_wop');
+
+function show_wop($attrs)
+{
+	$count = $attrs['count'];
+
+	$cars = new WP_Query([
+		'posts_per_page'   => $count,
+		'post_type' => 'car',
+
+	]);
+	$view_posts = '';
+	if ($cars->have_posts()) :
+		while ($cars->have_posts()) :
+			$cars->the_post();
+			$view_posts .= '
+			
+
+
+			<div class="col-lg-3 p-2  col-6">
+				<div class="card " style="">
+				' . get_the_post_thumbnail(get_the_id(), 'medium', [
+
+				'width' => '100%'
+			]) . '
+				<div class="card-body">
+				  <h5 class="card-title">' . get_the_title() . '</h5>
+				
+				</div>
+			  </div>
+			</div>
+
+			';
+
+		endwhile;
+	else :
+		$view_posts = 'Opps... no car yet, go take cup of cofee , bro';
+	endif;
+	wp_reset_postdata();
+	return $view_posts;
+}
