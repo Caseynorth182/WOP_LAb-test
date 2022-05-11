@@ -436,12 +436,14 @@ function show_wop($attrs)
 
 			<div class="col-lg-3 p-2  col-6">
 				<div class="card " style="">
-				' . get_the_post_thumbnail(get_the_id(), 'medium', [
+				<a href="' . get_the_permalink() . '">
+					' . get_the_post_thumbnail(get_the_id(), 'medium', [
 
 				'width' => '100%'
 			]) . '
+				</a>
 				<div class="card-body">
-				  <h5 class="card-title">' . get_the_title() . '</h5>
+				  <a href="' . get_the_permalink() . '" class="card-title">' . get_the_title() . '</a>
 				
 				</div>
 			  </div>
